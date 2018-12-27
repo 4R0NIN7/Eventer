@@ -47,12 +47,13 @@ public class ProfilActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Integer i = 1;
-                String s = "test";
-                loadUserData(s);
+
 
             }
         });
+
+        String s = "test";
+        loadUserData(s);
     }
 
     private void loadUserData(Object id) {
