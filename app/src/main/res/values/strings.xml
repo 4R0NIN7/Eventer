@@ -14,4 +14,17 @@
         completions."
     </string>
     <string name="title_activity_maps">Map</string>
+    <string name="searchHint">Wyszukaj wydarzenie lub miejsce</string>
+    <string name="internetEnabled">Internet jest włączony</string>
+    <string name="mapRead">Mapa jest gotowa</string>
+    <string name="gpsEnabled">Gps jest włączony</string>
+    <string name="internetDisabled">Internet jest wyłączony</string>
+    <string name="tryToInternetEnabled">Żeby używać mapy włącz internet w telefonie</string>
+    <string name="cancel">Anuluj</string>
+    <string name="gpsDisabled">Gps jest wyłączony</string>
+    <string name="tryToGpsEnabled">Włącz gps w telefonie</string>
+    <string name="markersDelete">Znaczniki na mapie zostały usunięte</string>
+    <string name="currentPosition">Jesteś tutaj</string>
+    <string name="errorCurrentLocation">Problem z ustaleniem pozycji</string>
+    <string name="errorGoogleServices">Problem z serwerami google</string>
 </resources>
