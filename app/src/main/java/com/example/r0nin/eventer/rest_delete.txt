@@ -1,0 +1,24 @@
+@Test
+public void delete() throws Exception {
+    String url = "http://localhost:8080/hello";
+
+    Request request = new Request.Builder()
+            .url(url)
+            .delete()
+            .build();
+
+    OkHttpClient okHttpClient = new OkHttpClient.Builder()
+            .build();
+
+    try (Response response = okHttpClient.newCall(request).execute()) {
+        int responseCode = response.code();
+        System.out.println("responseCode: " + responseCode);
+
+        if (!response.isSuccessful()) {
+            System.out.println("error!!");
+        }
+        if (response.body() != null) {
+            System.out.println("body: " + response.body().string());
+        }
+    }
+}

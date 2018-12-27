@@ -1,0 +1,26 @@
+public void put() throws Exception {
+    String url = "http://localhost:8080/dog_json";
+
+    Dog dog = new Dog(100, "pome");
+    RequestBody requestBody = RequestBody.create(JSON, mapper.writeValueAsString(dog));
+
+    Request request = new Request.Builder()
+            .url(url)
+            .put(requestBody)
+            .build();
+
+    OkHttpClient okHttpClient = new OkHttpClient.Builder()
+            .build();
+
+    try (Response response = okHttpClient.newCall(request).execute()) {
+        int responseCode = response.code();
+        System.out.println("responseCode: " + responseCode);
+
+        if (!response.isSuccessful()) {
+            System.out.println("error!!");
+        }
+        if (response.body() != null) {
+            System.out.println("body: " + response.body().string());
+        }
+    }
+}
