@@ -1,0 +1,48 @@
+Wydarzenia:
+
++ Wyswietlanie wszystkich wydarzen/wydarzen w okolicy/innego gowna
++ Wyswietlanie moich wydarzen (ja jestem uczestnikiem)
++ Dodawanie wydarzen
++ Dolaczanie do wydarzenia
++ Wypisywanie sie z wydarzenia
+
+
+Interfejs:
+
+ `MdyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyNmyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyymd
+ `MssssssssssssssssssssssssssssssssssssssN     dy      Mssssssssssssssssssssssssssssssssssssssssyd
+ `M                                      N     dy      M                                        yd
+ `M   Moje wydarzenie   Wypisz się       N     dy      M Proponowane wydarzenie   Zapisz się    yd
+ `M                                      N     dy      M                                        yd
+ `M                                      N     dy      M                                        yd
+ `MssssssssssssssssssssssssssssssssssssssN     dy      Mssssssssssssssssssssssssssssssssssssssssyd
+ `MssssssssssssssssssssssssssssssssssssssN     dy      Mssssssssssssssssssssssssssssssssssssssssyd
+ `M                                      N     dy      M                                        yd
+ `M   Moje wydarzenie   Wypisz się       N     dy      M Proponowane wydarzenie   Zapisz się    yd
+ `M                                      N     dy      M                                        yd
+ `M                                      N     dy      M                                        yd
+ `MssssssssssssssssssssssssssssssssssssssN     dy      Mssssssssssssssssssssssssssssssssssssssssyd
+ `MssssssssssssssssssssssssssssssssssssssN     dy      Mssssssssssssssssssssssssssssssssssssssssyd
+ `M                                      N     dy      M                                        yd
+ `M   Moje wydarzenie   Wypisz się       N     dy      M Proponowane wydarzenie   Zapisz się    yd
+ `M                                      N     dy      M                                        yd
+ `M                                      N     dy      M                                        yd
+ `MssssssssssssssssssssssssssssssssssssssN     dy      Mssssssssssssssssssssssssssssssssssssssssyd
+ `MssssssssssssssssssssssssssssssssssssssN     dy      Mssssssssssssssssssssssssssssssssssssssssyd
+ `M                                      N     dy      M                                        yd
+ `M   Moje wydarzenie   Wypisz się       N     dy      M Proponowane wydarzenie   Zapisz się    yd
+ `M                                      N     dy      M                                        yd
+ `M                                      N     dy      M                                        yd
+ `MssssssssssssssssssssssssssssssssssssssN     dy      Mssssssssssssssssssssssssssssssssssssssssyd
+ `Mdyyyyyyyyyyyyyyyyyyyyyyyhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhyyyyyyyyyyyyyyyyyyyyyyyyyyymd
+ `M/                       dNdydhhhhhhyhhhhhhdhhhhdhdhdyhhhyyyyyyyyyM+                          yd
+ `M/                       dd                                       N+                          yd
+ `M/                       dy Stwórz wydarzenie                     N+                          yd
+ `M/                       dy                                       N+                          yd
+ `M/                       dy   Od:........         do:...........  N+                          yd
+ `M/                       dy                                       N+                          yd
+ `M/                       dy                                       N+                          yd
+ `M/                       dy          Utwórz                       N+                          yd
+ `M/                       dy                                       N+                          yd
+ `M/                       yhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhd/                          yd
+ `hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhs
