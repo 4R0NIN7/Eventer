@@ -21,19 +21,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!-- Jak chcesz zmienić startową aplikację to zmieniasz tutaj nazwe na wybraną -->
-        <activity android:name=".EnterActivity">
+        <!-- Jak chcesz zmienić startową aplikację to zmieniasz tutaj nazwe na wybraną EnterActivity-->
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
+        <!--<activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".WiadomoscActivity" />
-        <activity android:name=".WydarzenieActivity" />
+        <activity android:name=".WydarzenieActivity" />-->
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

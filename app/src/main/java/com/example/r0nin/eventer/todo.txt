@@ -1,3 +1,29 @@
+todo:
+
+
+
+1. Interfejs wydarzenia - Pjoter - na końcu pliku masz narysowane o co mniej więcej mi chodziło
+2. wydarzenia - get proponowanych wydarzeń, get moich wydarzeń - Kamil
+3. wydarzenia - post i delete do webserwisu - Kamil
+4. Interfejs wiadomości - Pjoter - jak wyżej. Trza zrobić dodatkową aktywność chyba.
+5. Wiadomości - get użytkowników z którymi pisałem - Kamil
+6. Wiadomości - get wiadomości z konkretnej konwersacji - Kamil (wysyłanie wiadomości już jest zrobione
+7. Mapa - timer odpalający funkcję co jakiś czas - Pjoter
+8. Mapa - stawianie markerów wg listy wydarzeń - Pjoter
+9. Mapa - get listy wydarzeń - Kamil
+10. Mapa - menu kontekstowe na kliknięcie w marker? Zapisz się / Wypisz się z wydarzenia?
+11. Logowanie - Kamil
+
+
+
+
+
+
+
+
+
+
+
 Wydarzenia:
 
 + Wyswietlanie wszystkich wydarzen/wydarzen w okolicy/innego gowna
@@ -125,3 +151,5 @@ Interfejs główny - konwersacje:
   `M    Wyślij                                  yd
   `M                                            yd
   `hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+
+
