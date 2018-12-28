@@ -46,3 +46,82 @@ Interfejs:
  `M/                       dy                                       N+                          yd
  `M/                       yhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhd/                          yd
  `hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhs
+
+
+
+
+Wiadomości  trzeba przebudować.
+Na razie wyświetlamy w jednym worku wszystkie wiadomości-wysłane-do-mnie.
+Niezależnie kto je wysłał.
+
+Trzeba zrobić listview z "konwersacjami". Na nim będą się wyświetlać użytkownicy, z którymi się pisało.
+Na kliknięcie pozycji z tego listview otwiera się nowa aktywność z wiadomościami od i do tej osoby.
+
+
+Interfejs główny - konwersacje:
+
+
+ `MdyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyNm
+ `M                                            dy
+ `M___Podaj nazwę użytkownika___________       dy
+ `M                                            dy
+ `M   + wiadomość        + skarga              dy
+ `MssssssssssssssssssssssssssssssssssssssN     dy
+ `M                                      N     dy
+ `M   Użytkownik                         N     dy
+ `M                                      N     dy
+ `M                                      N     dy
+ `MssssssssssssssssssssssssssssssssssssssN     dy
+ `MssssssssssssssssssssssssssssssssssssssN     dy
+ `M                                      N     dy
+ `M   Użytkownik                         N     dy
+ `M                                      N     dy
+ `M                                      N     dy
+ `MssssssssssssssssssssssssssssssssssssssN     dy
+ `MssssssssssssssssssssssssssssssssssssssN     dy
+ `M                                      N     dy
+ `M   Użytkownik                         N     dy
+ `M                                      N     dy
+ `M                                      N     dy
+ `MssssssssssssssssssssssssssssssssssssssN     dy
+ `Mdyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyydy
+ `M                                            yd
+ `M    _Treść wiadokmości__                    yd
+ `M                                            yd
+ `M    Wyślij                                  yd
+ `M                                            yd
+ `hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+
+ Interfejs wiadomości - otwiera się na kliknięcie którejś pozycji z listview
+
+
+  `MdyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyNm
+  `M                                            dy
+  `M   Pjoter                                   dy
+  `M                                            dy
+  `M   + wiadomość        + skarga              dy
+  `MssssssssssssssssssssssssssssssssssssssN     dy
+  `M                                      N     dy
+  `M   Wiadomość                          N     dy
+  `M                                      N     dy
+  `M                                      N     dy
+  `MssssssssssssssssssssssssssssssssssssssN     dy
+  `MssssssssssssssssssssssssssssssssssssssN     dy
+  `M                                      N     dy
+  `M   Wiadomość                          N     dy
+  `M                                      N     dy
+  `M                                      N     dy
+  `MssssssssssssssssssssssssssssssssssssssN     dy
+  `MssssssssssssssssssssssssssssssssssssssN     dy
+  `M                                      N     dy
+  `M   Wiadomość                          N     dy
+  `M                                      N     dy
+  `M                                      N     dy
+  `MssssssssssssssssssssssssssssssssssssssN     dy
+  `Mdyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyydy
+  `M                                            yd
+  `M    _Treść wiadokmości__                    yd
+  `M                                            yd
+  `M    Wyślij                                  yd
+  `M                                            yd
+  `hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
