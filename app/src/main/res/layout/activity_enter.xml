@@ -22,24 +22,28 @@
 
         <Button
             android:id="@+id/btnMapa"
+            style="@android:style/Widget.Material.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Mapa" />
 
         <Button
             android:id="@+id/btnWiadomosc"
+            style="@android:style/Widget.Material.Button.Borderless.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Wiadomość" />
 
         <Button
             android:id="@+id/btnProfil"
+            style="@android:style/Widget.Holo.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Profil" />
 
         <Button
             android:id="@+id/btnWydarzenie"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Wydarzenie" />

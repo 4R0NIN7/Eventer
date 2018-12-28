@@ -5,8 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -15,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +36,14 @@ public class WiadomoscActivity extends AppCompatActivity {
     protected EditText editTextTresc, editTextUzytkownik;
     protected RadioGroup radioGroupTyp , radioGroupOpinia;
     protected RadioButton radioButtonOpinia, radioButtonWiadomosc, radioButtonSkarga;
+    /*
+    ListView - widok listy
+    listItems - wrzucasz wiadomosci
+    Layout jednego elementu to list_item.xml w folderze layout
+     */
+    protected ListView listViewWiadomosci;
+    protected ArrayAdapter<String> adapter;
+    protected ArrayList<String> listItems;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +90,27 @@ public class WiadomoscActivity extends AppCompatActivity {
             }
         });
 
+        listViewWiadomosci = (ListView) findViewById(R.id.listviewWiadomosci);
+        listItems = new ArrayList<String>();
+        adapter = new ArrayAdapter<String>(this,R.layout.list_item, listItems);
+
+        listViewWiadomosci.setAdapter(adapter);
+        /*
+        Metoda, podczas wyboru wiadomosci
+         */
+        listViewWiadomosci.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                editTextTresc.setText(listItems.get(i)); //wrzucam to co kliknalem do editTextTresc
+            }
+        });
+
+
     }
+
+
+
+
     private class PostMessage extends AsyncTask<String, Void, Object> {
 
 
@@ -127,6 +159,8 @@ public class WiadomoscActivity extends AppCompatActivity {
 
 
         }
+
+
 
     }
 }

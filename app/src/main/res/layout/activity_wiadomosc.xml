@@ -80,16 +80,27 @@
         <EditText
             android:id="@+id/editTextTresc"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="88dp"
             android:ems="10"
             android:hint="Tekst wiadomości"
             android:inputType="textMultiLine" />
 
         <Button
             android:id="@+id/btnWyslij"
+            style="@android:style/Widget.Holo.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Wyślij" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <ListView
+            android:id="@+id/listviewWiadomosci"
+            android:layout_width="match_parent"
+            android:layout_height="107dp" />
+
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
