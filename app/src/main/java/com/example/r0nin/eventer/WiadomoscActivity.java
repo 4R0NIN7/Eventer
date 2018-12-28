@@ -92,6 +92,11 @@ public class WiadomoscActivity extends AppCompatActivity {
 
         listViewWiadomosci = (ListView) findViewById(R.id.listviewWiadomosci);
         listItems = new ArrayList<String>();
+
+
+
+
+
         adapter = new ArrayAdapter<String>(this,R.layout.list_item, listItems);
 
         listViewWiadomosci.setAdapter(adapter);
@@ -105,11 +110,64 @@ public class WiadomoscActivity extends AppCompatActivity {
             }
         });
 
+        new GetMyMessages().execute("test");
+
 
     }
 
 
+    private class GetMyMessages extends AsyncTask<String, Void, Object>{
 
+        @Override
+        protected Object doInBackground(String... strings) {
+
+
+            OkHttpClient client = new OkHttpClient();
+            Request req;
+            String login = strings[0];
+            req = new Request.Builder().url("http://192.168.1.104:51000/api/Wiadomosc/login/"+login).build();
+            Response res = null;
+            try{
+                res = client.newCall(req).execute();
+                return res.body().string();
+            }catch(IOException exception){
+                exception.printStackTrace();
+            }
+
+            return null;
+        }
+
+
+
+        @Override
+        protected void onPostExecute(Object o) {
+            try {
+                if(o != null){
+                    Log.d("godzilla", "getting response");
+                    JSONArray json = new JSONArray(o.toString());
+                    listItems.clear();
+                    for(int i = 0; i<json.length(); i++){
+                        JSONObject userJson = json.getJSONObject(i);
+                        String tresc = userJson.getString("tresc");
+                        String login_nadawcy = userJson.getString("login_nadawcy");
+                        String data_wyslania = userJson.getString("data_wyslania");
+                        Log.d("godzilla", "response: "+data_wyslania + " : " + login_nadawcy + " : " + tresc);
+
+
+                        listItems.add(data_wyslania + " : " + login_nadawcy + " : " + tresc);
+                    }
+
+                    adapter.notifyDataSetChanged();
+                    listViewWiadomosci.invalidateViews();
+                    listViewWiadomosci.refreshDrawableState();
+
+
+                }
+            } catch (JSONException e) {
+
+            }
+        }
+    }
 
     private class PostMessage extends AsyncTask<String, Void, Object> {
 
@@ -124,8 +182,8 @@ public class WiadomoscActivity extends AppCompatActivity {
             // Names and values will be url encoded
             final FormBody.Builder formBuilder = new FormBody.Builder();
             formBuilder.add("tresc", editTextTresc.getText().toString());
-            formBuilder.add("login_nadawcy", editTextUzytkownik.getText().toString());
-            formBuilder.add("login_odbiorcy", "test");
+            formBuilder.add("login_nadawcy","test" );
+            formBuilder.add("login_odbiorcy", editTextUzytkownik.getText().toString());
             formBuilder.add("data_wyslania", "1.01.2000");
 
             RequestBody requestBody = formBuilder.build();
