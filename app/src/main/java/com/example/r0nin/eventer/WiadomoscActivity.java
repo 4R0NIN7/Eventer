@@ -54,31 +54,23 @@ public class WiadomoscActivity extends AppCompatActivity {
         editTextUzytkownik = (EditText) findViewById(R.id.editTextUzytkownik); //uzytkownik
         radioGroupTyp = (RadioGroup) findViewById(R.id.radioGroupTyp);
         radioGroupOpinia = (RadioGroup) findViewById(R.id.radioGroupOpinia);
-        radioButtonOpinia = (RadioButton) findViewById(R.id.radioButtonOpinia);
         radioButtonSkarga = (RadioButton) findViewById(R.id.radioButtonSkarga);
         radioButtonWiadomosc = (RadioButton) findViewById(R.id.radioButtonWiadomosc);
 
-        radioButtonOpinia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                radioGroupTyp.setEnabled(false);
-                radioGroupOpinia.setVisibility(View.VISIBLE);
-                editTextTresc.setEnabled(false);
-            }
-        });
+
 
         radioButtonWiadomosc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 radioGroupTyp.setEnabled(false);
-                radioButtonOpinia.setEnabled(false);
+
             }
         });
         radioButtonSkarga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 radioGroupTyp.setEnabled(false);
-                radioButtonOpinia.setEnabled(false);
+
             }
         });
 
