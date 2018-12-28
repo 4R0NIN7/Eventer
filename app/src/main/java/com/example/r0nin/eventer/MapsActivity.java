@@ -34,6 +34,7 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.AutocompletePrediction;
 import com.google.android.gms.location.places.GeoDataClient;
 import com.google.android.gms.location.places.Place;
@@ -109,6 +110,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         goBack = findViewById(R.id.back);
         isServiceOk();
         enableRuntimePermission();
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE); //lokacja
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
             Toast.makeText(this, this.getText(R.string.gpsEnabled), Toast.LENGTH_SHORT).show();
             gpsEnabled = true;

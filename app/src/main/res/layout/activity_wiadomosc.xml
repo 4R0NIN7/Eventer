@@ -23,15 +23,18 @@
         <EditText
             android:id="@+id/editTextUzytkownik"
             android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Podaj nazwe użytkownika lub wydarzenia"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:autofillHints="" />
 
         <RadioGroup
             android:id="@+id/radioGroupTyp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/radioButtonWiadomosc"
@@ -41,19 +44,19 @@
                 android:text="Wiadomość" />
 
             <RadioButton
-                android:id="@+id/radioButtonOpinia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Opinia" />
-
-            <RadioButton
                 android:id="@+id/radioButtonSkarga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Skarga" />
         </RadioGroup>
+
+        <ListView
+            android:id="@+id/listviewWiadomosci"
+            style="@style/Widget.AppCompat.Light.ListView.DropDown"
+            android:layout_width="match_parent"
+            android:layout_height="195dp"
+            android:scrollbars="vertical" />
 
         <RadioGroup
             android:id="@+id/radioGroupOpinia"
@@ -91,15 +94,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Wyślij" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="30dp" />
-
-        <ListView
-            android:id="@+id/listviewWiadomosci"
-            android:layout_width="match_parent"
-            android:layout_height="107dp" />
 
     </LinearLayout>
 
