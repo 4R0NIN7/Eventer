@@ -29,6 +29,9 @@ public class ProfilActivity extends AppCompatActivity {
     EditText textViewDataUrodzenia;
     EditText textViewTelefon;
     Button btnDodaj, btnEdytuj, btnZapisz;
+
+    private String login="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +56,8 @@ public class ProfilActivity extends AppCompatActivity {
             }
         });
 
-        String s = "test";
-        loadUserData(s);
+
+
 
         //edycja
         btnEdytuj.setOnClickListener(new OnClickListener() {
@@ -68,6 +71,14 @@ public class ProfilActivity extends AppCompatActivity {
                  */
             }
         });
+
+        Bundle loginBundle = getIntent().getExtras();
+        if(loginBundle != null){
+            login = loginBundle.getString("login");
+
+
+        }
+        loadUserData(login);
     }
 
     private void loadUserData(Object id) {
@@ -86,10 +97,10 @@ public class ProfilActivity extends AppCompatActivity {
             Request req;
             try{
                 Integer id = (Integer)IdOrLogin;
-                req = new Request.Builder().url("http://192.168.198.1:51000/api/Uzytkownik/"+id).build();
+                req = new Request.Builder().url(getResources().getString(R.string.apiUrl)+"/api/Uzytkownik/"+id).build();
             }catch(Exception e){
                 String login = IdOrLogin.toString();
-                req = new Request.Builder().url("http://192.168.198.1:51000/api/Uzytkownik/login/"+login).build();
+                req = new Request.Builder().url(getResources().getString(R.string.apiUrl)+"/api/Uzytkownik/login/"+login).build();
             }
             Response res = null;
             try{
@@ -108,12 +119,23 @@ public class ProfilActivity extends AppCompatActivity {
                 if(o != null){
                 JSONArray json = new JSONArray(o.toString());
                 JSONObject userJson = json.getJSONObject(0);
-                textViewLogin.setText("Login: " + userJson.getString("login"));
-                textViewPunkty.setText("Punkty: "+userJson.getString("punkty"));
-                textViewImie.setText("Imię: "+userJson.getString("imie"));
-                textViewNazwisko.setText("Nazwisko: "+userJson.getString("nazwisko"));
-                textViewDataUrodzenia.setText("Data urodzenia: "+userJson.getString("data_urodzenia"));
-                textViewTelefon.setText("Telefon: "+userJson.getString("nr_telefonu"));
+
+                String points = userJson.getString("punkty");
+                String firstName = userJson.getString("imie");
+                String lastName = userJson.getString("nazwisko");
+                String date = userJson.getString("data_urodzenia");
+                String phone = userJson.getString("nr_telefonu");
+
+                textViewLogin.setText("Login: " + login);
+                textViewPunkty.setText("Punkty: "+points);
+                if(firstName != "null")
+                    textViewImie.setText("Imię: "+firstName);
+                if(lastName != "null")
+                textViewNazwisko.setText("Nazwisko: "+lastName);
+                if(date != "null")
+                textViewDataUrodzenia.setText("Data urodzenia: "+date);
+                if(phone != "null")
+                textViewTelefon.setText("Telefon: "+phone);
                 }
             } catch (JSONException e) {
 

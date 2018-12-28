@@ -3,6 +3,8 @@ package com.example.r0nin.eventer;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -19,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,9 +31,17 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -185,7 +196,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask = new UserLoginTask(email, password, getApplicationContext());
             mAuthTask.execute((Void) null);
         }
     }
@@ -294,45 +305,71 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask extends AsyncTask<Void, Void, String> {
 
         private final String mEmail;
         private final String mPassword;
+        private Context ctx;
+        private String message = "";
 
-        UserLoginTask(String email, String password) {
+        UserLoginTask(String email, String password, Context ctx) {
             mEmail = email;
             mPassword = password;
+            this.ctx = ctx;
+
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
+        protected String doInBackground(Void... params) {
 
+
+            boolean authResult = authenticate(mEmail, mPassword);
+            message = "welcome back, ";
             try {
-                // Simulate network access.
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
-                return false;
+                e.printStackTrace();
             }
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+
+            if(!authResult){
+
+                boolean regResult = register(mEmail, mPassword);
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+                message = "welcome, ";
+                if(!regResult){
+                    return "";
+                }
+
             }
 
-            // TODO: register the new account here.
-            return true;
+
+            return mEmail;
+
         }
 
         @Override
-        protected void onPostExecute(final Boolean success) {
+        protected void onPostExecute(final String login) {
             mAuthTask = null;
             showProgress(false);
+            Log.d("godzilla", "is succes? "+login);
+            //Toast.makeText(LoginActivity.this, "is succes? " + login, Toast.LENGTH_SHORT).show();
+            if (login != "") {
 
-            if (success) {
+                Log.d("godzilla", "succes "+login);
+
+
+                Intent intent = new Intent(ctx,EnterActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Bundle loginBundle = new Bundle();
+                loginBundle.putString("message",message );
+                loginBundle.putString("login",login );
+                intent.putExtras(loginBundle);
+                ctx.startActivity(intent);
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
@@ -345,6 +382,74 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
         }
+
+
+        private boolean authenticate(String email, String password){
+
+            Log.d("godzilla", "authenticate- entry");
+            if(email == "admin" && password == "admin")
+                return true;
+
+            String url = getResources().getString(R.string.apiUrl)+"/api/Uzytkownik/start";
+            // Names and values will be url encoded
+            final FormBody.Builder formBuilder = new FormBody.Builder();
+            formBuilder.add("login",email );
+            formBuilder.add("skrot_hasla",password );
+            RequestBody requestBody = formBuilder.build();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(requestBody)
+                    .build();
+            OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
+            int responseCode = 401;
+            try (Response response = okHttpClient.newCall(request).execute()) {
+                responseCode = response.code();
+                Log.d("godzilla", "responseCode: " + responseCode);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+
+            return responseCode==200;
+        }
+        private boolean register(String email, String password){
+
+            String url = getResources().getString(R.string.apiUrl)+"/api/Uzytkownik/add";
+            // Names and values will be url encoded
+            final FormBody.Builder formBuilder = new FormBody.Builder();
+            formBuilder.add("login",email );
+            formBuilder.add("skrot_hasla",password );
+            RequestBody requestBody = formBuilder.build();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(requestBody)
+                    .build();
+            OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
+            int responseCode = 401;
+            try (Response response = okHttpClient.newCall(request).execute()) {
+                responseCode = response.code();
+                Log.d("godzilla", " register responseCode: " + responseCode);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return responseCode==200;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
 

@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import okhttp3.Call;
 import okhttp3.FormBody;
@@ -44,6 +46,8 @@ public class WiadomoscActivity extends AppCompatActivity {
     protected ListView listViewWiadomosci;
     protected ArrayAdapter<String> adapter;
     protected ArrayList<String> listItems;
+
+    private String login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,8 +106,18 @@ public class WiadomoscActivity extends AppCompatActivity {
             }
         });
 
-        new GetMyMessages().execute("test");
+        Bundle loginBundle = getIntent().getExtras();
+        if(loginBundle != null){
+            login = loginBundle.getString("login");
 
+
+        }
+
+        //new GetMyMessages().execute(login);
+
+
+        ActivityTimer timer = new ActivityTimer(10000, 1000);
+        timer.callTimer();
 
     }
 
@@ -117,7 +131,7 @@ public class WiadomoscActivity extends AppCompatActivity {
             OkHttpClient client = new OkHttpClient();
             Request req;
             String login = strings[0];
-            req = new Request.Builder().url("http://192.168.1.104:51000/api/Wiadomosc/login/"+login).build();
+            req = new Request.Builder().url(getResources().getString(R.string.apiUrl)+"/api/Wiadomosc/login/"+login).build();
             Response res = null;
             try{
                 res = client.newCall(req).execute();
@@ -168,13 +182,13 @@ public class WiadomoscActivity extends AppCompatActivity {
         @Override
         protected Object doInBackground(String... params) {
 
-            String url = "http://192.168.198.1:51000/api/Wiadomosc/add";
+            String url = getResources().getString(R.string.apiUrl)+"/api/Wiadomosc/add";
 
 
             // Names and values will be url encoded
             final FormBody.Builder formBuilder = new FormBody.Builder();
             formBuilder.add("tresc", editTextTresc.getText().toString());
-            formBuilder.add("login_nadawcy","test" );
+            formBuilder.add("login_nadawcy",login );
             formBuilder.add("login_odbiorcy", editTextUzytkownik.getText().toString());
             formBuilder.add("data_wyslania", "1.01.2000");
 
@@ -212,5 +226,31 @@ public class WiadomoscActivity extends AppCompatActivity {
 
 
 
+    }
+
+
+
+    public class ActivityTimer {
+        protected long period; //mili sekundy
+        protected int delay;
+        protected final Timer myTimer = new Timer();
+
+        public ActivityTimer(long period, int delay){
+            this.period = period;
+            this.delay = delay;
+        }
+        private void callTimer()
+        {
+
+            myTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    new GetMyMessages().execute(login);
+
+                    Log.d("ActivityTimer","wiadomoscActivity - Timer poszedł");
+                }
+            }, delay,period);
+
+        }
     }
 }

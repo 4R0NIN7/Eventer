@@ -22,7 +22,7 @@ public class MyTimer {
             public void run() {
                 //twoja metoda na odświeżenie danych
 
-                Log.d("callTimer: ","Timer poszedł");
+                Log.d("callTimer","Timer poszedł");
             }
         }, delay,period);
 

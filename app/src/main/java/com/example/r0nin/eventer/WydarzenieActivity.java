@@ -10,6 +10,7 @@ public class WydarzenieActivity extends AppCompatActivity {
 
     protected Button btnUtworz;
     protected EditText editTextNazwa, editTextDataPoczatku, editTextDataKonca;
+    private String login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,5 +26,12 @@ public class WydarzenieActivity extends AppCompatActivity {
 
             }
         });
+
+        Bundle loginBundle = getIntent().getExtras();
+        if(loginBundle != null){
+            login = loginBundle.getString("login");
+
+
+        }
     }
 }

@@ -101,6 +101,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker marker;
     private static final float DEFAULT_ZOOM = 15; //Default zoom for camera
 
+    private String login="";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,6 +126,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             internetEnabled = true;
         }else {
             showInternetDisabledAlertToUser();
+        }
+
+        Bundle loginBundle = getIntent().getExtras();
+        if(loginBundle != null){
+            login = loginBundle.getString("login");
+
+
         }
 
 

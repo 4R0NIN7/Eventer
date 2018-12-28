@@ -5,10 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class EnterActivity extends AppCompatActivity {
 
     private Button btnMapa, btnWydarzenie, btnProfil, btnWiadomosc;
+    String login="";
+    String message="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +26,12 @@ public class EnterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(EnterActivity.this,MapsActivity.class);
+
+                Bundle loginBundle = new Bundle();
+                loginBundle.putString("message",message );
+                loginBundle.putString("login",login );
+                intent.putExtras(loginBundle);
+
                 startActivity(intent);
             }
         });
@@ -29,6 +39,12 @@ public class EnterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(EnterActivity.this,WydarzenieActivity.class);
+
+                Bundle loginBundle = new Bundle();
+                loginBundle.putString("message",message );
+                loginBundle.putString("login",login );
+                intent.putExtras(loginBundle);
+
                 startActivity(intent);
             }
         });
@@ -36,6 +52,12 @@ public class EnterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(EnterActivity.this,ProfilActivity.class);
+
+                Bundle loginBundle = new Bundle();
+                loginBundle.putString("message",message );
+                loginBundle.putString("login",login );
+                intent.putExtras(loginBundle);
+
                 startActivity(intent);
             }
         });
@@ -43,8 +65,23 @@ public class EnterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(EnterActivity.this,WiadomoscActivity.class);
+
+                Bundle loginBundle = new Bundle();
+                loginBundle.putString("message",message );
+                loginBundle.putString("login",login );
+                intent.putExtras(loginBundle);
+
                 startActivity(intent);
             }
         });
+
+
+
+        Bundle loginBundle = getIntent().getExtras();
+        if(loginBundle != null){
+            login = loginBundle.getString("login");
+            message = loginBundle.getString("message");
+            Toast.makeText(this, message+login, Toast.LENGTH_SHORT).show();
+        }
     }
 }
