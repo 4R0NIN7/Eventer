@@ -22,13 +22,13 @@ import okhttp3.Response;
 
 public class ProfilActivity extends AppCompatActivity {
 
-    TextView textViewLogin;
-    TextView textViewPunkty;
-    TextView textViewImie;
-    TextView textViewNazwisko;
-    TextView textViewDataUrodzenia;
-    TextView textViewTelefon;
-    Button btnDodaj;
+    EditText textViewLogin;
+    EditText textViewPunkty;
+    EditText textViewImie;
+    EditText textViewNazwisko;
+    EditText textViewDataUrodzenia;
+    EditText textViewTelefon;
+    Button btnDodaj, btnEdytuj, btnZapisz;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +41,8 @@ public class ProfilActivity extends AppCompatActivity {
         textViewDataUrodzenia = findViewById(R.id.textViewDataUrodzenia);
         textViewTelefon = findViewById(R.id.textViewTelefon);
         btnDodaj = findViewById(R.id.btnDodaj);
-
+        btnEdytuj = findViewById(R.id.btnEdytuj);
+        btnZapisz = findViewById(R.id.btnZapisz);
 
         btnDodaj.setOnClickListener(new OnClickListener(){
 
@@ -54,6 +55,19 @@ public class ProfilActivity extends AppCompatActivity {
 
         String s = "test";
         loadUserData(s);
+
+        //edycja
+        btnEdytuj.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnDodaj.setVisibility(View.GONE);
+                btnZapisz.setVisibility(View.VISIBLE);
+
+                /*
+                Kod na edycje
+                 */
+            }
+        });
     }
 
     private void loadUserData(Object id) {

@@ -28,47 +28,55 @@
             android:layout_height="wrap_content"
             tools:srcCompat="@tools:sample/avatars[0]" />
 
-        <TextView
+        <EditText
             android:id="@+id/textViewLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Login: "
-            android:textSize="24sp" />
+            android:textSize="15sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/textViewPunkty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Punkty"
-            android:textSize="24sp" />
+            android:textSize="15sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/textViewImie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Imię: "
-            android:textSize="18sp" />
+            android:textSize="15sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/textViewNazwisko"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nazwisko:"
-            android:textSize="18sp" />
+            android:textSize="15sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/textViewDataUrodzenia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Data urodzenia:"
-            android:textSize="18sp" />
+            android:textSize="15sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/textViewTelefon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Telefon:"
-            android:textSize="18sp" />
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btnZapisz"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Zapisz"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/btnDodaj"
@@ -76,6 +84,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Dodaj nowy profil" />
+
+        <Button
+            android:id="@+id/btnEdytuj"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edytuj profil" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
