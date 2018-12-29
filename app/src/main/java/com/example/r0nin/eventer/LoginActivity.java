@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-
+    protected Button btnLog, btnRegister;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,8 +93,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        btnLog = findViewById(R.id.btnLog);
+        btnLog.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                attemptLogin();
+            }
+        });
+
+        btnRegister = findViewById(R.id.btnRegister);
+        btnRegister.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
@@ -311,6 +319,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         private final String mPassword;
         private Context ctx;
         private String message = "";
+
+
 
         UserLoginTask(String email, String password, Context ctx) {
             mEmail = email;

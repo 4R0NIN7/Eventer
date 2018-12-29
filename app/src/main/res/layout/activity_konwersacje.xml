@@ -36,19 +36,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/radioButtonWiadomosc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Wiadomość" />
-
-            <RadioButton
-                android:id="@+id/radioButtonSkarga"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Skarga" />
         </RadioGroup>
 
         <ListView
@@ -63,20 +50,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="invisible">
-
-            <RadioButton
-                android:id="@+id/radioButtonDobra"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Pozytywna" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNegatywna"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Negatywna" />
 
         </RadioGroup>
 

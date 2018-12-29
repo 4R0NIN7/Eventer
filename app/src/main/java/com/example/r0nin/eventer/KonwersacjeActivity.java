@@ -33,8 +33,6 @@ public class KonwersacjeActivity extends AppCompatActivity {
 
     protected Button btnWyslij;
     protected EditText editTextTresc, editTextUzytkownik;
-    protected RadioGroup radioGroupTyp , radioGroupOpinia;
-    protected RadioButton radioButtonWiadomosc, radioButtonSkarga;
     /*
     ListView - widok listy
     listItems - wrzucasz wiadomosci
@@ -53,27 +51,6 @@ public class KonwersacjeActivity extends AppCompatActivity {
         btnWyslij = (Button) findViewById(R.id.btnWyslij); //przycisk do wyslania
         editTextTresc = (EditText) findViewById(R.id.editTextTresc); //tresc wiadomosci
         editTextUzytkownik = (EditText) findViewById(R.id.editTextUzytkownik); //uzytkownik
-        radioGroupTyp = (RadioGroup) findViewById(R.id.radioGroupTyp);
-        radioGroupOpinia = (RadioGroup) findViewById(R.id.radioGroupOpinia);
-        radioButtonSkarga = (RadioButton) findViewById(R.id.radioButtonSkarga);
-        radioButtonWiadomosc = (RadioButton) findViewById(R.id.radioButtonWiadomosc);
-
-
-
-        radioButtonWiadomosc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                radioGroupTyp.setEnabled(false);
-
-            }
-        });
-        radioButtonSkarga.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                radioGroupTyp.setEnabled(false);
-
-            }
-        });
 
         //dodac wybierz uzytkownika z listy
         btnWyslij.setOnClickListener(new View.OnClickListener() {

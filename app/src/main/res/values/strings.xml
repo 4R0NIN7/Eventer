@@ -27,5 +27,6 @@
     <string name="currentPosition">Jesteś tutaj</string>
     <string name="errorCurrentLocation">Problem z ustaleniem pozycji</string>
     <string name="errorGoogleServices">Problem z serwerami google</string>
+    <string name="empty">Uzupełnij swoje dane!</string>
     <string name="apiUrl">http://192.168.1.104:51000</string>
 </resources>

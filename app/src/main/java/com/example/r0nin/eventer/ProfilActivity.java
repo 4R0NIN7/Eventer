@@ -3,6 +3,7 @@ package com.example.r0nin.eventer;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -47,6 +48,21 @@ public class ProfilActivity extends AppCompatActivity {
         btnEdytuj = findViewById(R.id.btnEdytuj);
         btnZapisz = findViewById(R.id.btnZapisz);
 
+        //Ustawienie taga na KeyListenera
+        textViewLogin.setTag(textViewLogin.getKeyListener());
+        textViewPunkty.setTag(textViewLogin.getKeyListener());
+        textViewImie.setTag(textViewLogin.getKeyListener());
+        textViewNazwisko.setTag(textViewLogin.getKeyListener());
+        textViewDataUrodzenia.setTag(textViewLogin.getKeyListener());
+        textViewTelefon.setTag(textViewLogin.getKeyListener());
+        //Ustawienie text boxow na nie edytowalne
+        textViewLogin.setKeyListener(null);
+        textViewPunkty.setKeyListener(null);
+        textViewImie.setKeyListener(null);
+        textViewNazwisko.setKeyListener(null);
+        textViewDataUrodzenia.setKeyListener(null);
+        textViewTelefon.setKeyListener(null);
+
         btnDodaj.setOnClickListener(new OnClickListener(){
 
             @Override
@@ -55,17 +71,18 @@ public class ProfilActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
         //edycja
         btnEdytuj.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 btnDodaj.setVisibility(View.GONE);
                 btnZapisz.setVisibility(View.VISIBLE);
-
+                textViewLogin.setKeyListener((KeyListener) textViewLogin.getTag());
+                textViewPunkty.setKeyListener((KeyListener) textViewLogin.getTag());
+                textViewImie.setKeyListener((KeyListener) textViewLogin.getTag());
+                textViewNazwisko.setKeyListener((KeyListener) textViewLogin.getTag());
+                textViewDataUrodzenia.setKeyListener((KeyListener) textViewLogin.getTag());
+                textViewTelefon.setKeyListener((KeyListener) textViewLogin.getTag());
                 /*
                 Kod na edycje
                  */
@@ -131,12 +148,16 @@ public class ProfilActivity extends AppCompatActivity {
                 if(firstName != "null")
                     textViewImie.setText("Imię: "+firstName);
                 if(lastName != "null")
-                textViewNazwisko.setText("Nazwisko: "+lastName);
+                    textViewNazwisko.setText("Nazwisko: "+lastName);
                 if(date != "null")
-                textViewDataUrodzenia.setText("Data urodzenia: "+date);
+                    textViewDataUrodzenia.setText("Data urodzenia: "+date);
                 if(phone != "null")
-                textViewTelefon.setText("Telefon: "+phone);
+                    textViewTelefon.setText("Telefon: "+phone);
                 }
+                //Toast na puste
+                if(textViewImie.getText().toString().matches("") || textViewNazwisko.getText().toString().matches("") ||
+                        textViewDataUrodzenia.getText().toString().matches("") || textViewDataUrodzenia.getText().toString().matches(""))
+                    Toast.makeText(ProfilActivity.this, ProfilActivity.this.getText(R.string.empty), Toast.LENGTH_LONG).show();
             } catch (JSONException e) {
 
             }

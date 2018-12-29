@@ -35,8 +35,6 @@ public class WiadomosciActivity extends AppCompatActivity {
     protected Button btnWyslij;
     protected EditText editTextTresc;
     protected TextView textViewUzytkownik;
-    protected RadioGroup radioGroupTyp , radioGroupOpinia;
-    protected RadioButton radioButtonWiadomosc, radioButtonSkarga;
 
     protected ListView listViewWiadomosci;
     protected ArrayAdapter<String> adapter;
@@ -54,27 +52,7 @@ public class WiadomosciActivity extends AppCompatActivity {
         btnWyslij = (Button) findViewById(R.id.btnWyslij); //przycisk do wyslania
         editTextTresc = (EditText) findViewById(R.id.editTextTresc); //tresc wiadomosci
         textViewUzytkownik = (TextView) findViewById(R.id.textViewUzytkownik); //uzytkownik
-        radioGroupTyp = (RadioGroup) findViewById(R.id.radioGroupTyp);
-        radioGroupOpinia = (RadioGroup) findViewById(R.id.radioGroupOpinia);
-        radioButtonSkarga = (RadioButton) findViewById(R.id.radioButtonSkarga);
-        radioButtonWiadomosc = (RadioButton) findViewById(R.id.radioButtonWiadomosc);
 
-
-
-        radioButtonWiadomosc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                radioGroupTyp.setEnabled(false);
-
-            }
-        });
-        radioButtonSkarga.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                radioGroupTyp.setEnabled(false);
-
-            }
-        });
 
         //dodac wybierz uzytkownika z listy
         btnWyslij.setOnClickListener(new View.OnClickListener() {
