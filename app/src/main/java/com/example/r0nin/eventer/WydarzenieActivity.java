@@ -3,12 +3,14 @@ package com.example.r0nin.eventer;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,6 +72,19 @@ public class WydarzenieActivity extends AppCompatActivity {
         listViewTwojeWydarzenia.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = listItemsTwojeWydarzenia.get(i);
+                String params[] = item.split(": ");
+                String id = params[0];
+                String data_poczatku = params[4];
+                Log.d("godzilla", "id: "+id+", data: "+data_poczatku);
+
+                String login2 = params[3];
+
+                if(login2.equals(login)){
+                    Toast.makeText(WydarzenieActivity.this, "You cannot leave your won event", Toast.LENGTH_SHORT).show();
+                }else{
+                    new LeaveEventTask(Integer.parseInt(id)).execute();
+                }
 
             }
         });
@@ -77,7 +92,14 @@ public class WydarzenieActivity extends AppCompatActivity {
         listViewWydarzeniaWPoblizu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = listItemsWydarzeniaWPoblizu.get(i);
+                Log.d("godzilla", "item: "+item);
 
+                String params[] = item.split(": ");
+                String id = params[0];
+                String data_poczatku = params[4];
+                Log.d("godzilla", "id: "+id+", data: "+data_poczatku);
+                new JoinEventTask(Integer.parseInt(id), data_poczatku).execute();
             }
         });
 
@@ -137,9 +159,9 @@ public class WydarzenieActivity extends AppCompatActivity {
                         String data_poczatku = userJson.getString("data_poczatku");
                         String data_konca = userJson.getString("data_konca");
                         String nazwa_wydarzenia = userJson.getString("nazwa_wydarzenia");
-
+                        String id = userJson.getString("id");
                         //Log.d("godzilla", nazwa_wydarzenia+": "+lat+","+lon+": "+login_organizatora+": "+data_poczatku+","+data_konca);
-                        listItemsTwojeWydarzenia.add(nazwa_wydarzenia+": "+lat+","+lon+": "+login_organizatora+": "+data_poczatku+","+data_konca);
+                        listItemsTwojeWydarzenia.add(id+": "+nazwa_wydarzenia+": "+lat+","+lon+": "+login_organizatora+": "+data_poczatku+": "+data_konca);
                     }
 
                     adapterTwojeWydarzenia.notifyDataSetChanged();
@@ -201,9 +223,9 @@ public class WydarzenieActivity extends AppCompatActivity {
                         String data_poczatku = userJson.getString("data_poczatku");
                         String data_konca = userJson.getString("data_konca");
                         String nazwa_wydarzenia = userJson.getString("nazwa_wydarzenia");
+                        String id = userJson.getString("id");
 
-
-                        listItemsWydarzeniaWPoblizu.add(nazwa_wydarzenia+": "+lat+","+lon+": "+login_organizatora+": "+data_poczatku+","+data_konca);
+                        listItemsWydarzeniaWPoblizu.add(id+": "+nazwa_wydarzenia+": "+lat+","+lon+": "+login_organizatora+": "+data_poczatku+": "+data_konca);
                     }
 
                     adapterWydarzeniaWPoblizu.notifyDataSetChanged();
@@ -266,6 +288,121 @@ public class WydarzenieActivity extends AppCompatActivity {
                 editTextDataPoczatku.setText("");
                 editTextDataKonca.setText("");
 
+            }
+
+
+        }
+
+
+
+    }
+    private class JoinEventTask extends AsyncTask<String, Void, Object> {
+
+
+        private int eventId;
+        private String dataPoczatku;
+        public JoinEventTask(int eventId, String dataPoczatku){
+            this.eventId = eventId;
+            this.dataPoczatku = dataPoczatku;
+        }
+
+        @Override
+        protected Object doInBackground(String... params) {
+
+            String url = getResources().getString(R.string.apiUrl)+"/api/udzial/add";
+
+
+            // Names and values will be url encoded
+            final FormBody.Builder formBuilder = new FormBody.Builder();
+            formBuilder.add("login_uczestnika", login);
+            formBuilder.add("id_wydarzenia",""+eventId );
+            formBuilder.add("data_dolaczenia", dataPoczatku);
+
+            RequestBody requestBody = formBuilder.build();
+
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(requestBody)
+                    .build();
+
+            OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                    .build();
+
+            try (Response response = okHttpClient.newCall(request).execute()) {
+                int responseCode = response.code();
+                //("godzilla", "responseCode: " + responseCode);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return new Object();
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+
+            if(o != null){
+                //("godzilla", "ok");
+                editTextNazwa.setText("");
+                editTextDataPoczatku.setText("");
+                editTextDataKonca.setText("");
+                Toast.makeText(WydarzenieActivity.this, "Joined an event!", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        }
+
+
+
+    }
+    private class LeaveEventTask extends AsyncTask<String, Void, Object> {
+
+
+        private int eventId;
+
+        public LeaveEventTask(int eventId){
+            this.eventId = eventId;
+
+        }
+
+        @Override
+        protected Object doInBackground(String... params) {
+
+            String url = getResources().getString(R.string.apiUrl)+"/api/udzial/delete/"+eventId+"-"+login;
+            //Log.d("godzilla", "calling: "+url);
+
+            // Names and values will be url encoded
+
+
+            Request request = new Request.Builder()
+                    .url(url)
+                    .delete()
+                    .build();
+
+            OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                    .build();
+
+            try (Response response = okHttpClient.newCall(request).execute()) {
+                int responseCode = response.code();
+                //("godzilla", "responseCode: " + responseCode);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return new Object();
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+
+            if(o != null){
+                //("godzilla", "ok");
+                editTextNazwa.setText("");
+                editTextDataPoczatku.setText("");
+                editTextDataKonca.setText("");
+
+                Toast.makeText(WydarzenieActivity.this, "Left event!", Toast.LENGTH_SHORT).show();
             }
 
 
