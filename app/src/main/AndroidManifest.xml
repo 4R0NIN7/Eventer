@@ -14,6 +14,7 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,10 +22,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!-- Jak chcesz zmienić startową aplikację to zmieniasz tutaj nazwe na wybraną EnterActivity-->
-        <activity android:name=".LoginActivity"
-            android:label="@string/title_activity_login"
-            >
+
+        <!-- Jak chcesz zmienić startową aplikację to zmieniasz tutaj nazwe na wybraną EnterActivity -->
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".EnterActivity" />
-        <activity android:name=".WiadomoscActivity" />
+        <activity android:name=".KonwersacjeActivity" />
         <activity android:name=".WydarzenieActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -49,7 +51,8 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".ProfilActivity"></activity>
+        <activity android:name=".ProfilActivity" />
+        <activity android:name=".WiadomosciActivity"></activity>
     </application>
 
 </manifest>

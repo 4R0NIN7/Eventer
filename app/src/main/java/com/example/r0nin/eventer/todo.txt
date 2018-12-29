@@ -12,7 +12,7 @@ todo:
 8. Mapa - stawianie markerów wg listy wydarzeń - Pjoter
 9. Mapa - get listy wydarzeń - Kamil
 10. Mapa - menu kontekstowe na kliknięcie w marker? Zapisz się / Wypisz się z wydarzenia?
-11. Logowanie - Kamil
+done 11. Logowanie - Kamil
 
 
 

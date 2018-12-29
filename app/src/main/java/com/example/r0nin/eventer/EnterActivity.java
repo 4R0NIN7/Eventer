@@ -64,7 +64,7 @@ public class EnterActivity extends AppCompatActivity {
         btnWiadomosc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(EnterActivity.this,WiadomoscActivity.class);
+                Intent intent = new Intent(EnterActivity.this,KonwersacjeActivity.class);
 
                 Bundle loginBundle = new Bundle();
                 loginBundle.putString("message",message );

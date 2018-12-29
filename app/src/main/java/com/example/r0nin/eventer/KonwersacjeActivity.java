@@ -1,5 +1,6 @@
 package com.example.r0nin.eventer;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,20 +20,16 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import okhttp3.Call;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class WiadomoscActivity extends AppCompatActivity {
+public class KonwersacjeActivity extends AppCompatActivity {
 
     protected Button btnWyslij;
     protected EditText editTextTresc, editTextUzytkownik;
@@ -51,7 +48,7 @@ public class WiadomoscActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wiadomosc);
+        setContentView(R.layout.activity_konwersacje);
 
         btnWyslij = (Button) findViewById(R.id.btnWyslij); //przycisk do wyslania
         editTextTresc = (EditText) findViewById(R.id.editTextTresc); //tresc wiadomosci
@@ -102,7 +99,10 @@ public class WiadomoscActivity extends AppCompatActivity {
         listViewWiadomosci.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                editTextTresc.setText(listItems.get(i)); //wrzucam to co kliknalem do editTextTresc
+                //editTextTresc.setText(listItems.get(i)); //wrzucam to co kliknalem do editTextTresc
+                launchMessagesActivity(listItems.get(i));
+
+
             }
         });
 
@@ -121,6 +121,19 @@ public class WiadomoscActivity extends AppCompatActivity {
 
     }
 
+    private void launchMessagesActivity(String recipient) {
+        Intent intent = new Intent(KonwersacjeActivity.this,WiadomosciActivity.class);
+
+        Bundle loginBundle = new Bundle();
+        loginBundle.putString("recipientLogin",recipient );
+        loginBundle.putString("myLogin",login );
+        intent.putExtras(loginBundle);
+
+        startActivity(intent);
+
+
+    }
+
 
     private class GetMyMessages extends AsyncTask<String, Void, Object>{
 
@@ -131,7 +144,7 @@ public class WiadomoscActivity extends AppCompatActivity {
             OkHttpClient client = new OkHttpClient();
             Request req;
             String login = strings[0];
-            req = new Request.Builder().url(getResources().getString(R.string.apiUrl)+"/api/Wiadomosc/login/"+login).build();
+            req = new Request.Builder().url(getResources().getString(R.string.apiUrl)+"/api/Wiadomosc/my-conversations/"+login).build();
             Response res = null;
             try{
                 res = client.newCall(req).execute();
@@ -153,14 +166,14 @@ public class WiadomoscActivity extends AppCompatActivity {
                     JSONArray json = new JSONArray(o.toString());
                     listItems.clear();
                     for(int i = 0; i<json.length(); i++){
-                        JSONObject userJson = json.getJSONObject(i);
-                        String tresc = userJson.getString("tresc");
-                        String login_nadawcy = userJson.getString("login_nadawcy");
-                        String data_wyslania = userJson.getString("data_wyslania");
-                        Log.d("godzilla", "response: "+data_wyslania + " : " + login_nadawcy + " : " + tresc);
+//                        JSONObject userJson = json.getJSONObject(i);
+//                        String tresc = userJson.getString("tresc");
+//                        String login_nadawcy = userJson.getString("login_nadawcy");
+//                        String data_wyslania = userJson.getString("data_wyslania");
+//                        Log.d("godzilla", "response: "+data_wyslania + " : " + login_nadawcy + " : " + tresc);
+                        String login_nadawcy = json.get(i).toString();
 
-
-                        listItems.add(data_wyslania + " : " + login_nadawcy + " : " + tresc);
+                        listItems.add(login_nadawcy);
                     }
 
                     adapter.notifyDataSetChanged();
