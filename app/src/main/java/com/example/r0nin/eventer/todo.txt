@@ -1,10 +1,11 @@
 todo:
 + mapa - zmienić tło ze śmietnika na coś innego. wyglądającego jak "refresh". Może być napis "Refresh map".
 + jakiś customowy obrazek do profilu (u mnie na emulatorze się nie ładuje)
-+ poprawić formatowanie daty w wiadomościach - moze to zrobie w webserwisie, bo tutaj wypieprza bledy
+
 
 
 done
++ poprawić formatowanie daty w wiadomościach - moze to zrobie w webserwisie, bo tutaj wypieprza bledy
 + wiadomości  - button w dół
 + przesunąć interfejs wydarzeń w dół (bo jest niewykorzystane miejsce pod buttonem)
 + button "dodaj nowy profil" chyba do usunięcia. niech jeden użytkownik ma tylko jeden profil.
