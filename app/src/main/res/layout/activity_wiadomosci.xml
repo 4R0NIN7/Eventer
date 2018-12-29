@@ -19,13 +19,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/editTextUzytkownik"
+        <TextView
+            android:id="@+id/textViewUzytkownik"
             android:layout_width="match_parent"
             android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Podaj nazwe użytkownika lub wydarzenia"
+            android:hint="Uzytkownik"
             android:inputType="textPersonName"
             android:autofillHints="" />
 

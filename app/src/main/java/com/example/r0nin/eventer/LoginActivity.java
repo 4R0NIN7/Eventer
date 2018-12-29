@@ -356,11 +356,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected void onPostExecute(final String login) {
             mAuthTask = null;
             showProgress(false);
-            Log.d("godzilla", "is succes? "+login);
+            //("godzilla", "is succes? "+login);
             //Toast.makeText(LoginActivity.this, "is succes? " + login, Toast.LENGTH_SHORT).show();
             if (login != "") {
 
-                Log.d("godzilla", "succes "+login);
+                //("godzilla", "succes "+login);
 
 
                 Intent intent = new Intent(ctx,EnterActivity.class);
@@ -386,7 +386,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         private boolean authenticate(String email, String password){
 
-            Log.d("godzilla", "authenticate- entry");
+            //("godzilla", "authenticate- entry");
             if(email == "admin" && password == "admin")
                 return true;
 
@@ -404,7 +404,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             int responseCode = 401;
             try (Response response = okHttpClient.newCall(request).execute()) {
                 responseCode = response.code();
-                Log.d("godzilla", "responseCode: " + responseCode);
+                //("godzilla", "responseCode: " + responseCode);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -429,7 +429,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             int responseCode = 401;
             try (Response response = okHttpClient.newCall(request).execute()) {
                 responseCode = response.code();
-                Log.d("godzilla", " register responseCode: " + responseCode);
+                //("godzilla", " register responseCode: " + responseCode);
             } catch (IOException e) {
                 e.printStackTrace();
             }

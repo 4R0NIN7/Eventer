@@ -8,16 +8,21 @@ dodaje do arraylisty w mapach. Dorób do tej klasy co tam uważasz, na razie da�
 2a. wydarzenia - get proponowanych wydarzeń, get moich wydarzeń - Kamil
 3. wydarzenia - post i delete do webserwisu - Kamil
 4. Interfejs wiadomości - Pjoter - WiadomosciActivity - done (skopiowane z Konwersacji)
-5. Wiadomości - get użytkowników z którymi pisałem - Kamil
-6. Wiadomości - get wiadomości z konkretnej konwersacji - Kamil (wysyłanie wiadomości już jest zrobione)
++ wiadomość, czy skarga
+
 7. Mapa - timer odpalający funkcję co jakiś czas - Pjoter potrzeba, synchronizacja z webservicem (pobranie listy wydarzeń) - Kamil
 8. Mapa - stawianie markerów wg listy wydarzeń - Pjoter - done tylko że nie mam listy markeów
 9. Mapa - get listy wydarzeń - Kamil
 10. Mapa - menu kontekstowe na kliknięcie w marker? Zapisz się / Wypisz się z wydarzenia?
+
++ zmienić komunikat jak nie da się zalogować
+
+
 done
 11. Logowanie - Kamil
 12. Tworzenie wydarzeń na mapie - jest. Naciskasz mape, pobierane są koordy i startuje activity_wydarzenie. Tam sobie weźmiesz już te koordy z bundle i utworzysz wydarzenie
-
+5. Wiadomości - get użytkowników z którymi pisałem - Kamil
+6. Wiadomości - get wiadomości z konkretnej konwersacji - Kamil (wysyłanie wiadomości już jest zrobione)
 
 
 
