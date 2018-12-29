@@ -29,7 +29,7 @@ public class ProfilActivity extends AppCompatActivity {
     EditText textViewNazwisko;
     EditText textViewDataUrodzenia;
     EditText textViewTelefon;
-    Button btnDodaj, btnEdytuj, btnZapisz;
+    Button  /*btnDodaj,*/ btnEdytuj, btnZapisz;
 
     private String login="";
 
@@ -44,7 +44,7 @@ public class ProfilActivity extends AppCompatActivity {
         textViewNazwisko = findViewById(R.id.textViewNazwisko);
         textViewDataUrodzenia = findViewById(R.id.textViewDataUrodzenia);
         textViewTelefon = findViewById(R.id.textViewTelefon);
-        btnDodaj = findViewById(R.id.btnDodaj);
+        //btnDodaj = findViewById(R.id.btnDodaj);
         btnEdytuj = findViewById(R.id.btnEdytuj);
         btnZapisz = findViewById(R.id.btnZapisz);
 
@@ -63,19 +63,19 @@ public class ProfilActivity extends AppCompatActivity {
         textViewDataUrodzenia.setKeyListener(null);
         textViewTelefon.setKeyListener(null);
 
-        btnDodaj.setOnClickListener(new OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-
-
-            }
-        });
+//        btnDodaj.setOnClickListener(new OnClickListener(){
+//
+//            @Override
+//            public void onClick(View view) {
+//
+//
+//            }
+//        });
         //edycja
         btnEdytuj.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                btnDodaj.setVisibility(View.GONE);
+                //btnDodaj.setVisibility(View.GONE);
                 btnZapisz.setVisibility(View.VISIBLE);
                 textViewLogin.setKeyListener((KeyListener) textViewLogin.getTag());
                 textViewPunkty.setKeyListener((KeyListener) textViewLogin.getTag());
@@ -153,11 +153,12 @@ public class ProfilActivity extends AppCompatActivity {
                     textViewDataUrodzenia.setText("Data urodzenia: "+date);
                 if(phone != "null")
                     textViewTelefon.setText("Telefon: "+phone);
-                }
-                //Toast na puste
-                if(textViewImie.getText().toString().matches("") || textViewNazwisko.getText().toString().matches("") ||
-                        textViewDataUrodzenia.getText().toString().matches("") || textViewDataUrodzenia.getText().toString().matches(""))
+                if(firstName == "null" || lastName == "null" || date == "null" || phone == "null"){
                     Toast.makeText(ProfilActivity.this, ProfilActivity.this.getText(R.string.empty), Toast.LENGTH_LONG).show();
+                }
+                }
+
+
             } catch (JSONException e) {
 
             }

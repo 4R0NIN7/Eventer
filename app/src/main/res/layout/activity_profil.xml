@@ -78,12 +78,7 @@
             android:text="Zapisz"
             android:visibility="gone" />
 
-        <Button
-            android:id="@+id/btnDodaj"
-            style="@android:style/Widget.Holo.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dodaj nowy profil" />
+
 
         <Button
             android:id="@+id/btnEdytuj"

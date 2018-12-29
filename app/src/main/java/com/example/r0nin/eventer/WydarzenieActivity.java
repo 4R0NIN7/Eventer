@@ -3,6 +3,7 @@ package com.example.r0nin.eventer;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,7 +18,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -161,6 +165,10 @@ public class WydarzenieActivity extends AppCompatActivity {
                         String nazwa_wydarzenia = userJson.getString("nazwa_wydarzenia");
                         String id = userJson.getString("id");
                         //Log.d("godzilla", nazwa_wydarzenia+": "+lat+","+lon+": "+login_organizatora+": "+data_poczatku+","+data_konca);
+                        //SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+                        //Date d1 = format.parse(data_poczatku);
+                        //Date d2 = format.parse(data_konca);
+
                         listItemsTwojeWydarzenia.add(id+": "+nazwa_wydarzenia+": "+lat+","+lon+": "+login_organizatora+": "+data_poczatku+": "+data_konca);
                     }
 
@@ -172,7 +180,10 @@ public class WydarzenieActivity extends AppCompatActivity {
                 }
             } catch (JSONException e) {
 
-            }
+            } //catch (ParseException e) {
+               // Log.d("godzilla", "parsing error");
+              //  e.printStackTrace();
+            //}
         }
     }
     private class GetRecommendedEventsTask extends AsyncTask<String, Void, Object> {

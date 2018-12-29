@@ -1,24 +1,13 @@
 todo:
-
-
-13.wiadomość, czy skarga - ja bym skargi w ogóle wywalił, po cholerę nam to :p - done
-
-+ stawianie markerów z wątku w tle? na razie mamy to podpięte pod guzik (jeśli zostawiamy podpięte pod guzik, to trzeba zmienić obrazek)
-
-10. Mapa - menu kontekstowe na kliknięcie w marker? Zapisz się / Wypisz się z wydarzenia? - done
-Metoda onMapReady więcej tutaj ----> https://developers.google.com/maps/documentation/android-sdk/infowindows
-
-+ trzeba jakoś inaczej zrobić rejestrację. Jak zrobię literówkę, to bam! nowe konto. Więc potrzebujemy jakiegoś panelu do rejestracji. - done
-
-+ edycja profilu - jakoś ładnie to zrobić.Może textboxy enabled/disabled, czy coś. - done
-https://stackoverflow.com/questions/3928711/how-to-make-edittext-not-editable-through-xml-in-android
- I przy wejściu do aktywności "profil", jeżeli część z nich jst pusta, to walić toastem "uzupełnij swój profil". - done
-
-+ przesunąć interfejs wiadomości (button w dół) - done
-
++ mapa - zmienić tło ze śmietnika na coś innego. wyglądającego jak "refresh". Może być napis "Refresh map".
++ jakiś customowy obrazek do profilu (u mnie na emulatorze się nie ładuje)
++ poprawić formatowanie daty w wiadomościach - moze to zrobie w webserwisie, bo tutaj wypieprza bledy
 
 
 done
++ wiadomości  - button w dół
++ przesunąć interfejs wydarzeń w dół (bo jest niewykorzystane miejsce pod buttonem)
++ button "dodaj nowy profil" chyba do usunięcia. niech jeden użytkownik ma tylko jeden profil.
 + usunąć toast z wiadomości
 + zmienić komunikat jak nie da się zalogować
 11. Logowanie - Kamil
@@ -34,7 +23,20 @@ dodaje do arraylisty w mapach. Dorób do tej klasy co tam uważasz, na razie da�
 8. Mapa - stawianie markerów wg listy wydarzeń - Pjoter - done tylko że nie mam listy markeów
 9. Mapa - get listy wydarzeń - Kamil
 7. Mapa - timer odpalający funkcję co jakiś czas - Pjoter potrzeba, synchronizacja z webservicem (pobranie listy wydarzeń) - Kamil
+13.wiadomość, czy skarga - ja bym skargi w ogóle wywalił, po cholerę nam to :p - done
 
++ stawianie markerów z wątku w tle? na razie mamy to podpięte pod guzik (jeśli zostawiamy podpięte pod guzik, to trzeba zmienić obrazek)
+
+10. Mapa - menu kontekstowe na kliknięcie w marker? Zapisz się / Wypisz się z wydarzenia? - done
+Metoda onMapReady więcej tutaj ----> https://developers.google.com/maps/documentation/android-sdk/infowindows
+
++ trzeba jakoś inaczej zrobić rejestrację. Jak zrobię literówkę, to bam! nowe konto. Więc potrzebujemy jakiegoś panelu do rejestracji. - done
+
++ edycja profilu - jakoś ładnie to zrobić.Może textboxy enabled/disabled, czy coś. - done
+https://stackoverflow.com/questions/3928711/how-to-make-edittext-not-editable-through-xml-in-android
+ I przy wejściu do aktywności "profil", jeżeli część z nich jst pusta, to walić toastem "uzupełnij swój profil". - done
+
++ przesunąć interfejs wiadomości (button w dół) - done
 Wydarzenia:
 
 + Wyswietlanie wszystkich wydarzen/wydarzen w okolicy/innego gowna
