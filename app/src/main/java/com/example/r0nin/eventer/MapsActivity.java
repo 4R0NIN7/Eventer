@@ -13,6 +13,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Looper;
 import android.provider.Settings;
@@ -59,6 +60,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -191,6 +194,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
+
+            }
+        });
+
+        /*
+        Zapis do wydarzenia
+         */
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+
+            }
+        });
+        /*
+        Rezygnacja z uczestnictwa
+         */
+        mMap.setOnInfoWindowLongClickListener(new GoogleMap.OnInfoWindowLongClickListener() {
+            @Override
+            public void onInfoWindowLongClick(Marker marker) {
 
             }
         });
@@ -456,6 +478,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         hideKeyboard();
     }
 
+
+
     private String getNotNullData(PlacesInfo placesInfo){
         String notNullString;
         String address, coordinates,  rating, distance;
@@ -522,6 +546,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
     }
+
+
+
 
 
     private class Wydarzenie{

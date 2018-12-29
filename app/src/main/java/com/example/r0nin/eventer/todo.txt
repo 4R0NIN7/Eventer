@@ -1,13 +1,20 @@
 todo:
 
 
-13.wiadomość, czy skarga - ja bym skargi w ogóle wywalił, po cholerę nam to :p
+13.wiadomość, czy skarga - ja bym skargi w ogóle wywalił, po cholerę nam to :p - done
+
 + stawianie markerów z wątku w tle? na razie mamy to podpięte pod guzik (jeśli zostawiamy podpięte pod guzik, to trzeba zmienić obrazek)
-10. Mapa - menu kontekstowe na kliknięcie w marker? Zapisz się / Wypisz się z wydarzenia?
-+ trzeba jakoś inaczej zrobić rejestrację. Jak zrobię literówkę, to bam! nowe konto. Więc potrzebujemy jakiegoś panelu do rejestracji.
-+ edycja profilu - jakoś ładnie to zrobić.Może textboxy enabled/disabled, czy coś.
- I przy wejściu do aktywności "profil", jeżeli część z nich jst pusta, to walić toastem "uzupełnij swój profil".
-+ przesunąć interfejs wiadomości (button w dół)
+
+10. Mapa - menu kontekstowe na kliknięcie w marker? Zapisz się / Wypisz się z wydarzenia? - done
+Metoda onMapReady więcej tutaj ----> https://developers.google.com/maps/documentation/android-sdk/infowindows
+
++ trzeba jakoś inaczej zrobić rejestrację. Jak zrobię literówkę, to bam! nowe konto. Więc potrzebujemy jakiegoś panelu do rejestracji. - done
+
++ edycja profilu - jakoś ładnie to zrobić.Może textboxy enabled/disabled, czy coś. - done
+https://stackoverflow.com/questions/3928711/how-to-make-edittext-not-editable-through-xml-in-android
+ I przy wejściu do aktywności "profil", jeżeli część z nich jst pusta, to walić toastem "uzupełnij swój profil". - done
+
++ przesunąć interfejs wiadomości (button w dół) - done
 
 
 
