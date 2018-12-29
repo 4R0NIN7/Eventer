@@ -1,6 +1,6 @@
 todo:
 
-3. wydarzenia - post i delete do webserwisu - Kamil
+
 13.wiadomość, czy skarga
 7. Mapa - timer odpalający funkcję co jakiś czas - Pjoter potrzeba, synchronizacja z webservicem (pobranie listy wydarzeń) - Kamil
 8. Mapa - stawianie markerów wg listy wydarzeń - Pjoter - done tylko że nie mam listy markeów
@@ -20,8 +20,7 @@ done
 1. Interfejs wydarzenia - Pjoter - na końcu pliku masz narysowane o co mniej więcej mi chodziło - done
 2. Nowa klasa wydarzenie (utworzona), po utworzeniu wydarzenia niech sie robi jego obiekt przy pomocy tej klasy i
 dodaje do arraylisty w mapach. Dorób do tej klasy co tam uważasz, na razie dałem atrybuty nazwa i pozycja
-
-
+3. wydarzenia - post i delete do webserwisu - Kamil
 
 
 
