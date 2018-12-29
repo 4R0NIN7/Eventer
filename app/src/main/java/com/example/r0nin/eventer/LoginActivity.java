@@ -196,7 +196,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password, getApplicationContext());
+            mAuthTask = new UserLoginTask(email, password, getApplicationContext(), "login");
             mAuthTask.execute((Void) null);
         }
     }
@@ -311,29 +311,32 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         private final String mPassword;
         private Context ctx;
         private String message = "";
+        private String loginOrRegister;
 
-        UserLoginTask(String email, String password, Context ctx) {
+        UserLoginTask(String email, String password, Context ctx, String loginOrRegister) {
             mEmail = email;
             mPassword = password;
             this.ctx = ctx;
+            this.loginOrRegister = loginOrRegister;
 
         }
 
         @Override
         protected String doInBackground(Void... params) {
 
-
-            boolean authResult = authenticate(mEmail, mPassword);
-            message = "welcome back, ";
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if(loginOrRegister == "login"){
+                boolean authResult = authenticate(mEmail, mPassword);
+                message = "welcome back, ";
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if(!authResult){
+                    return "";
+                }
             }
-
-
-            if(!authResult){
-
+            else if(loginOrRegister == "register"){
                 boolean regResult = register(mEmail, mPassword);
                 try {
                     Thread.sleep(2000);
@@ -344,10 +347,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 if(!regResult){
                     return "";
                 }
-
             }
-
-
             return mEmail;
 
         }
