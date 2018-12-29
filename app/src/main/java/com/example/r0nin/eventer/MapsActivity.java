@@ -13,6 +13,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Looper;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -27,6 +28,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,12 +54,26 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.location.FusedLocationProviderClient;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -77,6 +93,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final int LOCATION_PERMISSIONS_REQUEST = 4321; //if locations permissions are not enabled
     protected static ArrayList<Marker> markers = new ArrayList<>();
 
+    protected ArrayList<Wydarzenie> myEvents = new ArrayList<>();
+    protected ArrayList<Wydarzenie> recommendedEvents = new ArrayList<>();
+    ArrayList<Wydarzenie> allEvents = new ArrayList<>();
 
 
 
@@ -136,6 +155,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
+
+
+
     }
 
     @Override
@@ -192,6 +214,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 startActivity(intent);
             }
         });
+
+        new Mapa_WydarzeniaTimer(10000, 1000).callTimer();
     }
 
     //sprawdza czy ma dostep do google
@@ -362,17 +386,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         markersDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteMarkersFromMap(mMap);
+                //deleteMarkersFromMap(mMap);
+                mMap.clear();
+                setMarkersFromEvent(allEvents);
             }
         });
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MapsActivity.this, EnterActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(MapsActivity.this, EnterActivity.class);
+                //startActivity(intent);
+                finish();
             }
         });
         //Tutaj lista markerów
+
+
         //setMarkersFromEvent();
 
     }
@@ -481,15 +510,215 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Dodaje markery z wydarzeniami
      */
     private void setMarkersFromEvent(ArrayList<Wydarzenie> wydarzenia){
-        for (Wydarzenie w: wydarzenia) {
-            MarkerOptions options = new MarkerOptions()
-                    .position(w.pozycja)
-                    .title(w.nazwa);
-            marker = mMap.addMarker(options);
-            markers.add(marker);
+        if(wydarzenia.size() >0){
+            for (Wydarzenie w: wydarzenia) {
+                MarkerOptions options = new MarkerOptions()
+                        .position(w.coordinates)
+                        .title(w.EventName);
+                marker = mMap.addMarker(options);
+                markers.add(marker);
+            }
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(wydarzenia.get(0).coordinates, DEFAULT_ZOOM));
         }
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(wydarzenia.get(0).pozycja, DEFAULT_ZOOM));
+
     }
 
 
+    private class Wydarzenie{
+        int id;
+        LatLng coordinates;
+        String adminLogin;
+        Date beginDate;
+        Date endDate;
+        String EventName;
+
+        public Wydarzenie(String id, String Lat, String Lon, String Admin, String begin, String end, String name){
+            this.id = Integer.parseInt(id);
+            coordinates = new LatLng(Double.parseDouble(Lat), Double.parseDouble(Lon));
+            adminLogin = Admin;
+            SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+            beginDate = new Date();
+            endDate = new Date();
+            try {
+                beginDate = format.parse(begin);
+                endDate = format.parse(end);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+        };
+
+    }
+    private class GetMyEventsTask extends AsyncTask<String, Void, Object> {
+
+        String mlogin;
+
+
+        public GetMyEventsTask(String me){
+            mlogin = me;
+            //Log.d("godzilla", "new task "+me);
+
+        }
+
+
+        @Override
+        protected Object doInBackground(String... strings) {
+            //Log.d("godzilla", "new background");
+            OkHttpClient client = new OkHttpClient();
+            Request req;
+
+            req = new Request.Builder().url(getResources().getString(R.string.apiUrl)+"/api/Wydarzenie/moje-wydarzenia/"+mlogin).build();
+            //Log.d("godzila", "asking "+getResources().getString(R.string.apiUrl)+"/api/Wydarzenie/moje-wydarzenia/"+mlogin);
+            Response res = null;
+            try{
+                res = client.newCall(req).execute();
+                return res.body().string();
+            }catch(IOException exception){
+                exception.printStackTrace();
+            }
+
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            try {
+                if(o != null){
+                    //Log.d("godzilla", "getting response");
+                    JSONArray json = new JSONArray(o.toString());
+                    //Log.d("godzilla", "response: "+json);
+                    myEvents.clear();
+                    for(int i = 0; i<json.length(); i++){
+                        JSONObject userJson = json.getJSONObject(i);
+                        String lat = userJson.getString("szerokosc");
+                        String lon = userJson.getString("wysokosc");
+
+                        String login_organizatora = userJson.getString("login_organizatora");
+                        String data_poczatku = userJson.getString("data_poczatku");
+                        String data_konca = userJson.getString("data_konca");
+                        String nazwa_wydarzenia = userJson.getString("nazwa_wydarzenia");
+                        String id = userJson.getString("id");
+                        //Log.d("godzilla", nazwa_wydarzenia+": "+lat+","+lon+": "+login_organizatora+": "+data_poczatku+","+data_konca);
+                        //listItemsTwojeWydarzenia.add(id+": "+nazwa_wydarzenia+": "+lat+","+lon+": "+login_organizatora+": "+data_poczatku+": "+data_konca);
+                        try{
+                            Wydarzenie w = new Wydarzenie(id, lat, lon, login_organizatora, data_poczatku, data_konca, nazwa_wydarzenia);
+                            myEvents.add(w);
+                        }catch(Exception e){
+
+                        }
+
+                    }
+
+
+
+
+                }
+            } catch (JSONException e) {
+
+            }
+        }
+    }
+    private class GetRecommendedEventsTask extends AsyncTask<String, Void, Object> {
+
+        String mlogin;
+
+
+        public GetRecommendedEventsTask(String me){
+            mlogin = me;
+
+        }
+
+
+        @Override
+        protected Object doInBackground(String... strings) {
+
+
+            OkHttpClient client = new OkHttpClient();
+            Request req;
+
+            req = new Request.Builder().url(getResources().getString(R.string.apiUrl)+"/api/Wydarzenie/proponowane-wydarzenia/"+mlogin).build();
+            Response res = null;
+            try{
+                res = client.newCall(req).execute();
+                return res.body().string();
+            }catch(IOException exception){
+                exception.printStackTrace();
+            }
+
+            return null;
+        }
+
+
+
+        @Override
+        protected void onPostExecute(Object o) {
+            try {
+                if(o != null){
+                    //("godzilla", "getting response");
+                    JSONArray json = new JSONArray(o.toString());
+                    recommendedEvents.clear();
+                    for(int i = 0; i<json.length(); i++){
+                        JSONObject userJson = json.getJSONObject(i);
+                        String lat = userJson.getString("szerokosc");
+                        String lon = userJson.getString("wysokosc");
+
+                        String login_organizatora = userJson.getString("login_organizatora");
+                        String data_poczatku = userJson.getString("data_poczatku");
+                        String data_konca = userJson.getString("data_konca");
+                        String nazwa_wydarzenia = userJson.getString("nazwa_wydarzenia");
+                        String id = userJson.getString("id");
+
+                        //listItemsWydarzeniaWPoblizu.add(id+": "+nazwa_wydarzenia+": "+lat+","+lon+": "+login_organizatora+": "+data_poczatku+": "+data_konca);
+                        try{
+                            Wydarzenie w = new Wydarzenie(id, lat, lon, login_organizatora, data_poczatku, data_konca, nazwa_wydarzenia);
+                            recommendedEvents.add(w);
+                        }catch(Exception e){
+
+                        }
+
+                    }
+
+
+
+
+                }
+            } catch (JSONException e) {
+
+            }
+        }
+    }
+    public class Mapa_WydarzeniaTimer {
+        protected long period; //mili sekundy
+        protected int delay;
+        protected final Timer myTimer = new Timer();
+
+        public Mapa_WydarzeniaTimer(long period, int delay){
+            this.period = period;
+            this.delay = delay;
+        }
+        private void callTimer()
+        {
+
+            myTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    new GetMyEventsTask(login).execute("");
+                    new GetRecommendedEventsTask(login).execute();
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    allEvents.clear();
+                    allEvents.addAll(myEvents);
+                    allEvents.addAll(recommendedEvents);
+                    //Log.d("godzilla", "all events: "+allEvents.size());
+                    //setMarkersFromEvent(allEvents);
+
+                }
+            }, delay,period);
+
+        }
+    }
 }

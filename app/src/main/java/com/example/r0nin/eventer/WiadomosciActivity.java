@@ -113,7 +113,7 @@ public class WiadomosciActivity extends AppCompatActivity {
             myLogin = loginBundle.getString("myLogin");
             recipientLogin = loginBundle.getString("recipientLogin");
 
-            Toast.makeText(this, "My login: "+myLogin+", Recipient: "+recipientLogin, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "My login: "+myLogin+", Recipient: "+recipientLogin, Toast.LENGTH_SHORT).show();
             textViewUzytkownik.setText("Messages: "+recipientLogin);
         }
 

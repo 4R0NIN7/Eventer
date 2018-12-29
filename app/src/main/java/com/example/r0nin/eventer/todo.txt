@@ -1,16 +1,19 @@
 todo:
 
 
-13.wiadomość, czy skarga
-7. Mapa - timer odpalający funkcję co jakiś czas - Pjoter potrzeba, synchronizacja z webservicem (pobranie listy wydarzeń) - Kamil
-8. Mapa - stawianie markerów wg listy wydarzeń - Pjoter - done tylko że nie mam listy markeów
-9. Mapa - get listy wydarzeń - Kamil
+13.wiadomość, czy skarga - ja bym skargi w ogóle wywalił, po cholerę nam to :p
++ stawianie markerów z wątku w tle? na razie mamy to podpięte pod guzik (jeśli zostawiamy podpięte pod guzik, to trzeba zmienić obrazek)
 10. Mapa - menu kontekstowe na kliknięcie w marker? Zapisz się / Wypisz się z wydarzenia?
++ trzeba jakoś inaczej zrobić rejestrację. Jak zrobię literówkę, to bam! nowe konto. Więc potrzebujemy jakiegoś panelu do rejestracji.
++ edycja profilu - jakoś ładnie to zrobić.Może textboxy enabled/disabled, czy coś.
+ I przy wejściu do aktywności "profil", jeżeli część z nich jst pusta, to walić toastem "uzupełnij swój profil".
++ przesunąć interfejs wiadomości (button w dół)
 
-+ zmienić komunikat jak nie da się zalogować
 
 
 done
++ usunąć toast z wiadomości
++ zmienić komunikat jak nie da się zalogować
 11. Logowanie - Kamil
 12. Tworzenie wydarzeń na mapie - jest. Naciskasz mape, pobierane są koordy i startuje activity_wydarzenie. Tam sobie weźmiesz już te koordy z bundle i utworzysz wydarzenie
 5. Wiadomości - get użytkowników z którymi pisałem - Kamil
@@ -21,9 +24,9 @@ done
 2. Nowa klasa wydarzenie (utworzona), po utworzeniu wydarzenia niech sie robi jego obiekt przy pomocy tej klasy i
 dodaje do arraylisty w mapach. Dorób do tej klasy co tam uważasz, na razie dałem atrybuty nazwa i pozycja
 3. wydarzenia - post i delete do webserwisu - Kamil
-
-
-
+8. Mapa - stawianie markerów wg listy wydarzeń - Pjoter - done tylko że nie mam listy markeów
+9. Mapa - get listy wydarzeń - Kamil
+7. Mapa - timer odpalający funkcję co jakiś czas - Pjoter potrzeba, synchronizacja z webservicem (pobranie listy wydarzeń) - Kamil
 
 Wydarzenia:
 

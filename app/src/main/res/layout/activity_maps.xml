@@ -21,13 +21,17 @@
         android:elevation="10dp"
         android:background="@drawable/white_border"
         android:id="@+id/rellayout1">
+
+
+
         <ImageView
+            android:id="@+id/ic_magnify"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:id="@+id/ic_magnify"
-            android:layout_centerVertical="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginLeft="10dp"
-            android:src="@mipmap/ic_search"/>
+            android:layout_marginBottom="17dp"
+            android:src="@mipmap/ic_search" />
         <AutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -40,25 +44,30 @@
             android:singleLine="true"
             android:hint="@string/searchHint"/>
     </RelativeLayout>
+
     <ImageView
         android:id="@+id/back"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_below="@id/rellayout1"
         android:layout_alignStart="@+id/rellayout1"
         android:layout_centerVertical="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="191dp"
         android:scaleType="centerCrop"
-        android:layout_below="@id/rellayout1"
         android:src="@mipmap/ic_back" />
 
     <ImageView
+        android:id="@+id/markers_delete"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_below="@id/back"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="57dp"
         android:scaleType="centerCrop"
-        android:id="@+id/markers_delete"
         android:src="@mipmap/ic_delete" />
+
+
+
 
 </RelativeLayout>

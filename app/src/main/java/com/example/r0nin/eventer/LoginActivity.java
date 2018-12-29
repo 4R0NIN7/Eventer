@@ -372,7 +372,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 ctx.startActivity(intent);
                 finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
+                mPasswordView.setError(/*getString(R.string.error_incorrect_password)*/"Ooops, something went wrong. Try again, please.");
                 mPasswordView.requestFocus();
             }
         }
@@ -436,19 +436,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             return responseCode==200;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }
