@@ -163,10 +163,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.getUiSettings().setMyLocationButtonEnabled(false);
         init();
 
+        /*
+
+         */
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
 
+            }
+        });
+
+
+        /*
+        Na klikniecie i przytrzymanie
+         */
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                Intent intent = new Intent(MapsActivity.this, WydarzenieActivity.class);
+                Bundle bundle = new Bundle();
+                double lat, lng;
+                lat = latLng.latitude;
+                lng = latLng.longitude;
+                bundle.putDouble("lat", lat);
+                bundle.putDouble("lng", lng);
+                intent.putExtras(bundle);
+
+                startActivity(intent);
             }
         });
     }
@@ -349,6 +372,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 startActivity(intent);
             }
         });
+        //Tutaj lista markerów
+        //setMarkersFromEvent();
 
     }
 
@@ -397,6 +422,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }else{
             marker = mMap.addMarker(new MarkerOptions().position(latLng));
+            markers.add(marker);
         }
         hideKeyboard();
     }
@@ -451,6 +477,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             searchText.setText("");
         }
     };
+    /*
+    Dodaje markery z wydarzeniami
+     */
+    private void setMarkersFromEvent(ArrayList<Wydarzenie> wydarzenia){
+        for (Wydarzenie w: wydarzenia) {
+            MarkerOptions options = new MarkerOptions()
+                    .position(w.pozycja)
+                    .title(w.nazwa);
+            marker = mMap.addMarker(options);
+            markers.add(marker);
+        }
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(wydarzenia.get(0).pozycja, DEFAULT_ZOOM));
+    }
 
 
 }

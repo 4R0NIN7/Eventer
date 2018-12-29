@@ -4,51 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WydarzenieActivity">
+    tools:context=".WydarzenieActivity"
+    tools:layout_editor_absoluteY="81dp">
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/linearLayout6"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/editTextNazwa"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Podaj nazwę wydarzenia"
-            android:inputType="textPersonName" />
+            android:layout_height="300dp"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/editTextDataPoczatku"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Data początku DD/MM/RRRR"
-            android:inputType="date" />
+            <ListView
+                android:id="@+id/listViewTwojeWydarzenia"
+                android:layout_width="194dp"
+                android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/editTextDataKonca"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Data końca DD/MM/RRRR"
-            android:inputType="date" />
+            </ListView>
 
-        <Button
-            android:id="@+id/btnUtworz"
-            style="@android:style/Widget.Holo.Button"
+            <ListView
+                android:id="@+id/listViewWydarzeniaWPoblizu"
+                android:layout_width="194dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Utwórz" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editTextNazwa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="Podaj nazwę wydarzenia do utworzenia"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_conversion_absoluteHeight="46dp"
+                tools:layout_conversion_absoluteWidth="368dp" />
+
+            <EditText
+                android:id="@+id/editTextDataPoczatku"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Data początku DD/MM/RRRR"
+                android:inputType="date"
+                app:layout_constraintStart_toStartOf="@+id/editTextNazwa"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNazwa"
+                tools:layout_conversion_absoluteHeight="46dp"
+                tools:layout_conversion_absoluteWidth="368dp" />
+
+            <EditText
+                android:id="@+id/editTextDataKonca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Data końca DD/MM/RRRR"
+                android:inputType="date"
+                app:layout_constraintStart_toStartOf="@+id/editTextDataPoczatku"
+                app:layout_constraintTop_toTopOf="@+id/editTextDataPoczatku"
+                tools:layout_conversion_absoluteHeight="46dp"
+                tools:layout_conversion_absoluteWidth="368dp" />
+
+            <Button
+                android:id="@+id/btnUtworz"
+                style="@android:style/Widget.Holo.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Utwórz"
+                app:layout_constraintStart_toStartOf="@+id/editTextDataKonca"
+                app:layout_constraintTop_toBottomOf="@+id/editTextDataKonca"
+                tools:layout_conversion_absoluteHeight="48dp"
+                tools:layout_conversion_absoluteWidth="368dp" />
+
+        </LinearLayout>
+
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

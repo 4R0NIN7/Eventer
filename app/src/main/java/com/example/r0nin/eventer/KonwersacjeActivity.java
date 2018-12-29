@@ -34,7 +34,7 @@ public class KonwersacjeActivity extends AppCompatActivity {
     protected Button btnWyslij;
     protected EditText editTextTresc, editTextUzytkownik;
     protected RadioGroup radioGroupTyp , radioGroupOpinia;
-    protected RadioButton radioButtonOpinia, radioButtonWiadomosc, radioButtonSkarga;
+    protected RadioButton radioButtonWiadomosc, radioButtonSkarga;
     /*
     ListView - widok listy
     listItems - wrzucasz wiadomosci
