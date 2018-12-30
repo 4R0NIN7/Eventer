@@ -25,8 +25,8 @@
         <ImageView
             android:id="@+id/imageViewFoto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars[0]" />
+            android:layout_height="175dp"
+            tools:srcCompat="@mipmap/image" />
 
         <EditText
             android:id="@+id/textViewLogin"

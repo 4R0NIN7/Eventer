@@ -1,6 +1,6 @@
 todo:
-+ mapa - zmienić tło ze śmietnika na coś innego. wyglądającego jak "refresh". Może być napis "Refresh map".
-+ jakiś customowy obrazek do profilu (u mnie na emulatorze się nie ładuje)
++ mapa - zmienić tło ze śmietnika na coś innego. wyglądającego jak "refresh". Może być napis "Refresh map". - done
++ jakiś customowy obrazek do profilu (u mnie na emulatorze się nie ładuje) - done
 
 
 

@@ -82,7 +82,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private AutoCompleteTextView searchText; //wyszukiwanie
-    private ImageView markersDelete, goBack;
+    private ImageView markersDelete, goBack, refresh;
     private LocationManager locationManager;
     private Boolean gpsEnabled = false; // gps włączony
     private Boolean internetEnabled = false; // internety som
@@ -133,6 +133,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         searchText = findViewById(R.id.input_search);
         markersDelete = findViewById(R.id.markers_delete);
         goBack = findViewById(R.id.back);
+        refresh = findViewById(R.id.refresh);
         isServiceOk();
         enableRuntimePermission();
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE); //lokacja
@@ -421,10 +422,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 finish();
             }
         });
-        //Tutaj lista markerów
+        //Refresh
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //setMarkersFromEvent();
+            }
+        });
 
-
-        //setMarkersFromEvent();
 
     }
 
