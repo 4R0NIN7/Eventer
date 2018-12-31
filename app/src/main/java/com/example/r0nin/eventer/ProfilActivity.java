@@ -17,8 +17,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class ProfilActivity extends AppCompatActivity {
@@ -76,9 +78,10 @@ public class ProfilActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //btnDodaj.setVisibility(View.GONE);
+                btnEdytuj.setVisibility(View.GONE);
                 btnZapisz.setVisibility(View.VISIBLE);
-                textViewLogin.setKeyListener((KeyListener) textViewLogin.getTag());
-                textViewPunkty.setKeyListener((KeyListener) textViewLogin.getTag());
+                //textViewLogin.setKeyListener((KeyListener) textViewLogin.getTag());
+                //textViewPunkty.setKeyListener((KeyListener) textViewLogin.getTag());
                 textViewImie.setKeyListener((KeyListener) textViewLogin.getTag());
                 textViewNazwisko.setKeyListener((KeyListener) textViewLogin.getTag());
                 textViewDataUrodzenia.setKeyListener((KeyListener) textViewLogin.getTag());
@@ -86,6 +89,16 @@ public class ProfilActivity extends AppCompatActivity {
                 /*
                 Kod na edycje
                  */
+            }
+        });
+
+        btnZapisz.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ProfilActivity.this, "Zapisano!", Toast.LENGTH_SHORT).show();
+                btnZapisz.setVisibility(View.GONE);
+                btnEdytuj.setVisibility(View.VISIBLE);
+                setUserData();
             }
         });
 
@@ -100,6 +113,9 @@ public class ProfilActivity extends AppCompatActivity {
 
     private void loadUserData(Object id) {
         new FetchUserDataTask().execute(id);
+    }
+    private void setUserData(){
+        new PutUserDataTask().execute();
     }
 
     private class FetchUserDataTask extends AsyncTask<Object, Void, Object>{
@@ -150,7 +166,7 @@ public class ProfilActivity extends AppCompatActivity {
                 if(lastName != "null")
                     textViewNazwisko.setText("Nazwisko: "+lastName);
                 if(date != "null")
-                    textViewDataUrodzenia.setText("Data urodzenia: "+date);
+                    textViewDataUrodzenia.setText("D. ur. - mm.dd.yyyy: "+date);
                 if(phone != "null")
                     textViewTelefon.setText("Telefon: "+phone);
                 if(firstName == "null" || lastName == "null" || date == "null" || phone == "null"){
@@ -165,4 +181,64 @@ public class ProfilActivity extends AppCompatActivity {
         }
     }
 
+
+    private class PutUserDataTask extends AsyncTask<String, Void, Object> {
+
+
+
+        @Override
+        protected Object doInBackground(String... params) {
+
+            String url = getResources().getString(R.string.apiUrl)+"/api/Uzytkownik/update/login/"+login;
+
+            String imie = textViewImie.getText().toString().split(": ")[1];
+            String nazwisko = textViewNazwisko.getText().toString().split(": ")[1];
+            String data_urodzenia = textViewDataUrodzenia.getText().toString().split(": ")[1];
+            String nr_telefonu = textViewTelefon.getText().toString().split(": ")[1];
+            // Names and values will be url encoded
+            final FormBody.Builder formBuilder = new FormBody.Builder();
+            formBuilder.add("imie", imie);
+            formBuilder.add("nazwisko", nazwisko);
+            formBuilder.add("data_urodzenia", data_urodzenia);
+            formBuilder.add("nr_telefonu", nr_telefonu);
+
+            RequestBody requestBody = formBuilder.build();
+
+            Request request = new Request.Builder()
+                    .url(url)
+                    .put(requestBody)
+                    .build();
+
+            OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                    .build();
+
+            try (Response response = okHttpClient.newCall(request).execute()) {
+                int responseCode = response.code();
+                //("godzilla", "responseCode: " + responseCode);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return new Object();
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+
+            if(o != null){
+                textViewLogin.setKeyListener(null);
+                textViewPunkty.setKeyListener(null);
+                textViewImie.setKeyListener(null);
+                textViewNazwisko.setKeyListener(null);
+                textViewDataUrodzenia.setKeyListener(null);
+                textViewTelefon.setKeyListener(null);
+
+            }
+
+
+        }
+
+
+
+    }
 }

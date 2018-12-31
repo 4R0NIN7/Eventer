@@ -39,7 +39,7 @@
             android:id="@+id/textViewPunkty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Punkty"
+            android:text="Punkty: "
             android:textSize="15sp" />
 
         <EditText
@@ -53,21 +53,21 @@
             android:id="@+id/textViewNazwisko"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nazwisko:"
+            android:text="Nazwisko: "
             android:textSize="15sp" />
 
         <EditText
             android:id="@+id/textViewDataUrodzenia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Data urodzenia:"
+            android:text="D. ur. - mm.dd.yyyy: "
             android:textSize="15sp" />
 
         <EditText
             android:id="@+id/textViewTelefon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Telefon:"
+            android:text="Telefon: "
             android:textSize="15sp" />
 
         <Button

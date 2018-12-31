@@ -411,7 +411,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 //deleteMarkersFromMap(mMap);
                 mMap.clear();
-                setMarkersFromEvent(allEvents);
+                //setMarkersFromEvent(allEvents);
             }
         });
         goBack.setOnClickListener(new View.OnClickListener() {
@@ -426,7 +426,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //setMarkersFromEvent();
+
+                mMap.clear();
+                setMarkersFromEvent(allEvents);
             }
         });
 
